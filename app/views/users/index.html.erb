@@ -1,0 +1,31 @@
+<% if flash.key?('error') %>
+	<% for errors in flash[:error] %>
+		<%= errors %>
+	<% end %>
+<% end %>
+<% if flash.key?('pw_error') %>
+	<%=flash[:pw_error]%>
+<% end %>
+<% if flash.key?('user_error') %>
+	<%=flash[:user_error]%>
+<% end %>
+<h4>Welcome</h4>
+<h5>Register</h5>
+<form action = '/register' method = 'post'>
+	<input name = "authenticity_token" type='hidden' value="<%= form_authenticity_token %>">
+	First Name:<input type='text' name='first_name'><br>
+	Last Name:<input type='text' name='last_name'><br>
+	Email:<input type='text' name='email'><br>
+	Password:<input type='password' name='pw'><br>
+	*Password should be at least 8 characters<br>
+	Confirm Password:<input type='password' name='confirm_pw'><br>
+	<input type='submit' value = 'Register'>
+</form>
+<hr>
+<h5>Login</h5>
+<form action = '/login' method = 'post'>
+	<input name = "authenticity_token" type='hidden' value="<%= form_authenticity_token %>">
+	Email :<input type='text' name='email'><br>
+	Password:<input type='password' name='pw'><br>
+	<input type='submit' value = 'Login'>
+</form>
