@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   		@user = User.find_by(email: params[:email])
   		if @user.authenticate(params[:pw])
   			session[:logged_in_user] = @user.id
-  			redirect_to '/dashboard'
+  			redirect_to '/songs'
 		else 
 			flash[:pw_error] = 'Please enter the correct password'
 			redirect_to '/'
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   		else
   			@user.save
   			session[:logged_in_user] = @user.id
-  			redirect_to '/dashboard'
+  			redirect_to '/songs'
   		end
   	end	
   end
@@ -43,5 +43,9 @@ class UsersController < ApplicationController
   def logout
     session[:logged_in_user] = nil
     redirect_to action: 'index'
+  end
+  def show
+    @user = User.find(params[:id])
+    @songlists = Songlist.where(user_id: params[:id])
   end
 end

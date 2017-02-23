@@ -1,0 +1,21 @@
+<a href = '/songs'>Dashboard</a>
+<a href = '/logout'>Log Out</a>
+
+<h3>Others who added <%=@song.artist%> - <%=@song.title%></h3>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Times Added</th>
+	</tr>
+	<% for person in @songlists %>
+	<% if person.user.first_name == @user.first_name %>
+		<% next %>
+	<% end %>
+	<tr>
+		<th><a href = '/users/<%=person.user.id%>'><%= person.user.first_name %> <%= person.user.last_name %></a></th> 
+		<th><%= person.play %></th>
+	<% end %>
+	</tr>
+
+
+</table>

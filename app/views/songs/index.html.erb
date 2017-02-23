@@ -1,0 +1,26 @@
+<h3>Hello, <%=@user.first_name%> <%=@user.last_name%>!<h4> <a href = 'logout'>Log Out</a>
+
+<h4> All the songs in our hub</h4> 
+
+<table>
+	<tr>
+		<th>Artist</th>
+		<th>Title</th>
+		<th>No of Times Song has Been Added</th>
+		<th>Add to Playlist</th>
+	</tr>
+	<% for song in @songs %>
+	<tr>
+		<th><%=song.artist%></th>
+		<th><a href = '/songs/<%=song.id%>'><%=song.title%></a></th>
+		<th><%=song.play%></th>
+		<th><button><a href = '/add_to_playlist/<%=song.id%>'>Add</a></button></th>
+	</tr>
+	<% end %>
+</table>
+<form action = '/add_song' method = 'POST'>
+	<input name = "authenticity_token" type='hidden' value="<%= form_authenticity_token %>">
+	Title: <input type = 'text' name = 'title'><br>
+	Artist: <input type = 'text' name = 'artist'><br>
+	<input type = 'submit' value = 'Add Song'>
+</form>

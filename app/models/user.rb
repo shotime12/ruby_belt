@@ -5,4 +5,7 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :password, presence: true
+  has_many :songs, as: :tunes
+  has_many :songlists
+  has_many :musics, through: :songlists
 end
