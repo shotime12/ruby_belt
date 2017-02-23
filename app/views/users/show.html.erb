@@ -1,0 +1,17 @@
+<a href = '/songs'>Dashboard</a>
+<a href = '/logout'>Log Out</a>
+
+<h3><%=@user.first_name%> <%=@user.last_name%>'s Playlist</h3>
+<table>
+	<tr>
+		<th>Artist</th>
+		<th>Title</th>
+		<th>Times Added</th>
+	</tr>
+<% for song in @songlists.reverse %>
+	<tr>
+		<th><%= song.music.artist %></th>
+		<th><%= song.music.title %></th>
+		<th><%= song.music.play %></th>
+	</tr>
+<% end %>
